@@ -1,0 +1,19 @@
+<% if(success != ''){ %>
+<div class="alert alert-dismissible fade show mt-4 child-background-1 card-opacity-success" role="alert">
+    <h4>Article has been added</h4>
+    <br>
+    <%= success %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
+
+<% if(error != ''){ %>
+<div class="alert alert-dismissible fade show mt-4 child-background-1 card-opacity-error" role="alert">
+    <h6 class="text-white"><%= error%></h6>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
