@@ -1,3 +1,4 @@
+/* add background-img to add background image (dont forget to add child-background-1 to to the parents child) */
 .background-img {
     position: relative;
     background: url('https://placeimg.com/640/480/grayscale') no-repeat center;
@@ -22,6 +23,7 @@
     background: rgba(255, 255, 255, 0.6)
 }
 
+/* add z-index 2  */
 .child-background-1 {
     position: relative;
     z-index: 2;
@@ -29,7 +31,12 @@
 
 .card-opacity {
     background-color: rgba(255, 255, 255, 0.7);
-    width: 100%
+    width: 100%;
+    transition: all 0.50s;
+}
+
+.card-opacity:hover {
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .card-opacity-success {
@@ -44,6 +51,12 @@
     font-size: 25px
 }
 
+
+/* add opacity to input fields */
+.inp-opacity {
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 18px
+}
 
 span {
     font-size: 25px
