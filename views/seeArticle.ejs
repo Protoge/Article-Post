@@ -7,14 +7,20 @@
                     class="fas fa-arrow-circle-right"></i></span></a>
     </div>
     <h1 class="display-5 text-center text-white child-background-1">Articles Posted</h1>
+    <form class="form-inline child-background-1 ml-4" method="post" action="/article/searchTitle">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="searchTitle" placeholder="Title..." name="searchTitle">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 text-capitalize">Search title</button>
+    </form>
     <ul class="nav d-flex flex-column child-background-1">
         <% for(var i = 0; i < articles.length; i++){ %>
         <li class="nav-item mb-4 mt-4 ml-4">
             <div class="card-group">
                 <div class="card-opacity rounded">
                     <div class="card-body shadow">
-                        <h5 class="card-title"><small
-                                class="text-muted text-capitalize">Title:</small><%= articles[i].title %></h5>
+                        <h5 class="card-title"><small class="text-muted text-capitalize"><i
+                                    class="fas fa-book-open"></i> Title:</small><%= articles[i].title %></h5>
                         <p class="card-text card-font-size"><%= articles[i].body %></p>
                         <p class="card-text"><small class="text-muted">By: <%= articles[i].author %></small></p>
                         <p class="card-text"><small class="text-muted">Posted at: <%= articles[i].date %></small></p>

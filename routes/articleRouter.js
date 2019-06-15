@@ -25,8 +25,7 @@ router.get("/seeArticle", (req, res) => {
 
 // Find specific article
 router.get("/seeArticle/:title", (req, res) => {
-  Article.find(
-    {
+  Article.find({
       title: req.params.title
     },
     (err, articles) => {
@@ -44,7 +43,11 @@ router.get("/seeArticle/:title", (req, res) => {
 // POST ROUTES
 
 router.post("/addArticle", async (req, res) => {
-  const { title, author, body } = req.body;
+  const {
+    title,
+    author,
+    body
+  } = req.body;
   let newArticle = await new Article({
     title,
     author,
@@ -56,7 +59,7 @@ router.post("/addArticle", async (req, res) => {
     res.redirect("/article/addArticle");
   }
 
-  newArticle.save(function(err) {
+  newArticle.save(function (err) {
     if (err) {
       console.log("Error:", err);
     } else {
@@ -65,5 +68,26 @@ router.post("/addArticle", async (req, res) => {
     }
   });
 });
+
+
+router.post('/searchTitle', async (req, res) => {
+  const {
+    searchTitle
+  } = req.body;
+
+  const postTitle = await Article.findOne({
+    title: searchTitle
+  })
+
+  if (searchTitle === "") {
+    req.flash("error", `Title not found.`);
+    res.redirect('/article/seeArticle')
+  } else if (!postTitle) {
+    req.flash("error", `${searchTitle} not found.`);
+    res.redirect('/article/seeArticle')
+  } else {
+    res.redirect(`/article/seeArticle/${searchTitle}`)
+  }
+})
 
 module.exports = router;
