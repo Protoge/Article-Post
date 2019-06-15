@@ -10,7 +10,6 @@ require('dotenv/config');
 // EJS template
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-
 // bodyparser json
 app.use(express.urlencoded({
     extended: true

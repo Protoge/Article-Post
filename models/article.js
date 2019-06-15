@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 let articleSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     author: {
         type: String,
