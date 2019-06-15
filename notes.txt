@@ -2,3 +2,4 @@ Some Ideas to implement on this project:
 1. Create a way to search for a specific article that already exist in the database
 2. input field doesn't reset if submit doesn't go through
 3. Add branch
+4. Add search title page
