@@ -40,6 +40,21 @@ router.get("/seeArticle/:title", (req, res) => {
   );
 });
 
+// Edit article route
+router.get("/editArticle/:id", (req, res, ) => {
+  Article.findById({
+    _id: req.params.id
+  }, (err, articles) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("editArticle", {
+        articles: articles
+      })
+    }
+  })
+})
+
 // POST ROUTES
 
 router.post("/addArticle", async (req, res) => {
@@ -63,7 +78,7 @@ router.post("/addArticle", async (req, res) => {
     if (err) {
       console.log("Error:", err);
     } else {
-      req.flash("success", "Scroll down to see newly added article.");
+      req.flash("success", "Article added");
       res.redirect("/article/seeArticle");
     }
   });
@@ -89,5 +104,32 @@ router.post('/searchTitle', async (req, res) => {
     res.redirect(`/article/seeArticle/${searchTitle}`)
   }
 })
+
+// PUT ROUTES
+router.post('/editArticle/:id', (req, res) => {
+  let article = {};
+
+  const {
+    title,
+    body
+  } = req.body;
+  article.title = title;
+  article.body = body;
+
+  let query = {
+    _id: req.params.id
+  }
+
+  Article.update(query, article, function (err) {
+    if (err) {
+      console.log("Error:", err);
+    } else {
+      req.flash("success", "Article updated");
+      res.redirect("/article/seeArticle");
+    }
+  });
+})
+
+
 
 module.exports = router;
