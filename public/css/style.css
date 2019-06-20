@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
 /* add background-img to add background image (dont forget to add child-background-1 to to the parents child) */
 .background-img {
     position: relative;

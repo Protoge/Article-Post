@@ -105,7 +105,12 @@ router.post('/searchTitle', async (req, res) => {
   }
 })
 
-// PUT ROUTES
+// BACK TO ARTICLE (FROM EDIT ARTICLE PAGE) PAGE
+router.post('/editArticle/back', (req, res) => {
+  res.redirect('/article/seeArticle')
+})
+
+// EDIT ARTICLE POSTS
 router.post('/editArticle/:id', (req, res) => {
   const {
     title,

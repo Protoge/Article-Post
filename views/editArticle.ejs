@@ -1,19 +1,25 @@
-<form action="/article/editArticle/<%= articles._id %>" method="post">
-    <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label">Title</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="title" value="<%= articles.title %>">
+<div class="background-img child-background-1 d-flex flex-column text-white" style="height:100vh; overflow:hidden">
+    <div class="child-background-1 w-75 m-auto">
+        <h1 class="font-italic text-white"><%= articles.title %></h1>
+        <small class="font-weight-bold">By:<%= articles.author %></small>
+        <form id="editForm" action="/article/editArticle/<%= articles._id %>" method="post"></form>
+        <form id="backForm" action="/article/editArticle/back" method="post"></form>
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="title" value="<%= articles.title %>" form="editForm">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="body" class="col-sm-2 col-form-label">Body</label>
-        <div class="col-sm-10">
-            <textarea class="form-control inp-opacity" id="body" rows="3" name="body"><%= articles.body %></textarea>
+        <div class="form-group row mt-5">
+            <label for="body" class="col-sm-2 col-form-label">Body:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control inp-opacity" id="body" rows="3" name="body"
+                    form="editForm"><%= articles.body %></textarea>
+            </div>
         </div>
+
+        <input type="submit" class="btn btn-primary mt-5 mr-3" form="editForm" value="Update"></input>
+
+        <input type="submit" class="btn btn-primary mt-5" form="backForm" value="back to articles"></input>
     </div>
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-    </div>
-</form>
+</div>
