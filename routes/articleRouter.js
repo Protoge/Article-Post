@@ -107,20 +107,21 @@ router.post('/searchTitle', async (req, res) => {
 
 // PUT ROUTES
 router.post('/editArticle/:id', (req, res) => {
-  let article = {};
-
   const {
     title,
     body
   } = req.body;
-  article.title = title;
-  article.body = body;
+
+  let article = {
+    title,
+    body
+  };
 
   let query = {
     _id: req.params.id
   }
 
-  Article.update(query, article, function (err) {
+  Article.updateOne(query, article, function (err) {
     if (err) {
       console.log("Error:", err);
     } else {
