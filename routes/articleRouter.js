@@ -25,19 +25,28 @@ router.get("/seeArticle", (req, res) => {
 
 // Find specific article
 router.get("/seeArticle/:title", (req, res) => {
+  // Article.find({
+  //     title: req.params.title
+  //   },
+  //   (err, articles) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       res.render("seeArticle", {
+  //         articles: articles
+  //       });
+  //     }
+  //   }
+  // );
   Article.find({
       title: req.params.title
-    },
-    (err, articles) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("seeArticle", {
-          articles: articles
-        });
-      }
-    }
-  );
+    })
+    .then(articles => {
+      res.render('seeArticle', {
+        articles: articles
+      })
+    })
+    .catch(err => console.log(err))
 });
 
 // Edit article route

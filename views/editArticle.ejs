@@ -1,6 +1,6 @@
 <div class="background-img child-background-1 d-flex flex-column text-white" style="height:100vh; overflow:hidden">
     <div class="child-background-1 w-75 m-auto">
-        <h1 class="font-italic text-white"><%= articles.title %></h1>
+        <h1 class="font-italic text-white text-capitalize"><%= articles.title %></h1>
         <small class="font-weight-bold">By:<%= articles.author %></small>
         <form id="editForm" action="/article/editArticle/<%= articles._id %>" method="post"></form>
         <form id="backForm" action="/article/editArticle/back" method="post"></form>
