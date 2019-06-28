@@ -121,28 +121,44 @@ router.post('/editArticle/back', (req, res) => {
 
 // EDIT ARTICLE POSTS
 router.post('/editArticle/:id', (req, res) => {
-  const {
-    title,
-    body
-  } = req.body;
+  // const {
+  //   title,
+  //   body
+  // } = req.body;
 
-  let article = {
-    title,
-    body
-  };
+  // let article = {
+  //   title,
+  //   body
+  // };
 
-  let query = {
-    _id: req.params.id
-  }
+  // let query = {
+  //   _id: req.params.id
+  // }
 
-  Article.updateOne(query, article, function (err) {
-    if (err) {
-      console.log("Error:", err);
-    } else {
-      req.flash("success", "Article updated");
-      res.redirect("/article/seeArticle");
-    }
-  });
+  // Article.updateOne(query, article, function (err) {
+  //   if (err) {
+  //     console.log("Error:", err);
+  //   } else {
+  //     req.flash("success", "Article updated");
+  //     res.redirect("/article/seeArticle");
+  //   }
+  // });
+  Article.findById(req.params.id)
+    .then(articles => {
+      articles.title = req.body.title;
+      articles.body = req.body.body;
+
+      articles.save()
+        .then(() => {
+          req.flash("success", "Article updated");
+          res.redirect("/article/seeArticle");
+        })
+        .catch(err => console.log("Error: ", err))
+    })
+    .catch(err => {
+      console.log("Error: ", err);
+      res.redirect('/articles/seeArticle');
+    })
 })
 
 
