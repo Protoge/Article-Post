@@ -83,14 +83,23 @@ router.post("/addArticle", async (req, res) => {
     res.redirect("/article/addArticle");
   }
 
-  newArticle.save(function (err) {
-    if (err) {
-      console.log("Error:", err);
-    } else {
+  // newArticle.save(function (err) {
+  //   if (err) {
+  //     console.log("Error:", err);
+  //   } else {
+  //     req.flash("success", "Article added");
+  //     res.redirect("/article/seeArticle");
+  //   }
+  // });
+
+  newArticle.save()
+    .then(() => {
       req.flash("success", "Article added");
       res.redirect("/article/seeArticle");
-    }
-  });
+    })
+    .catch(err => {
+      console.log("Error: ", err)
+    })
 });
 
 
@@ -143,6 +152,7 @@ router.post('/editArticle/:id', (req, res) => {
   //     res.redirect("/article/seeArticle");
   //   }
   // });
+  // promises method
   Article.findById(req.params.id)
     .then(articles => {
       articles.title = req.body.title;
