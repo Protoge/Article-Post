@@ -51,17 +51,26 @@ router.get("/seeArticle/:title", (req, res) => {
 
 // Edit article route
 router.get("/editArticle/:id", (req, res, ) => {
-  Article.findById({
-    _id: req.params.id
-  }, (err, articles) => {
-    if (err) {
-      console.log(err);
-    } else {
+  // Article.findById({
+  //   _id: req.params.id
+  // }, (err, articles) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     res.render("editArticle", {
+  //       articles: articles
+  //     })
+  //   }
+  // })
+
+  Article.findById(req.params.id)
+    .then(articles => {
       res.render("editArticle", {
         articles: articles
       })
-    }
-  })
+    })
+    .catch(err => console.log('Error: ', err))
+
 })
 
 // POST ROUTES
