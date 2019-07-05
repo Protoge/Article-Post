@@ -3,6 +3,7 @@ const router = express.Router();
 const Article = require("../models/article");
 
 // GET routes
+const getDate = require('../public/js/getDate');
 router.get("/", (req, res) => {
   res.render("articlePage");
 });
@@ -176,8 +177,19 @@ router.post('/editArticle/:id', (req, res) => {
     })
     .catch(err => {
       console.log("Error: ", err);
-      res.redirect('/articles/seeArticle');
+      res.redirect('/article/seeArticle');
     })
+})
+
+// DELETE SPECIFIC ARTICLE
+
+router.post('/deleteArticle/:id', (req, res, next) => {
+  Article.findByIdAndDelete(req.params.id)
+    .then(articles => {
+      req.flash("success", `The article ${articles.title} has been deleted`);
+      res.redirect("/article/seeArticle")
+    })
+    .catch(err => console.log("Error: ", err))
 })
 
 
